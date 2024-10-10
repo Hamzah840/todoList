@@ -9,13 +9,24 @@ function App() {
   const addTodo = (text) => {
     const newTodo = [...todos, { text, isCompleted: false }];
     setTodos(newTodo);
-    console.log(newTodo);
   };
+
+  const completedTodo = (index) => {
+    const newTodo = [...todos];
+    newTodo[index].isCompleted = !newTodo[index].isCompleted;
+    setTodos(newTodo);
+  };
+
+  const deleteTodo = index => {
+    const newTodo = [...todos];
+    newTodo.splice(index, 1);
+    setTodos(newTodo);    
+  }
 
   return (
     <div className="TodoApp">
       <TodoInput addTodo={addTodo} />
-      <TodoList todos={todos}/>
+      <TodoList todos={todos} completedTodo={completedTodo} deleteTodo={deleteTodo} />
     </div>
   );
 }

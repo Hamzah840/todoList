@@ -1,11 +1,12 @@
-function TodoList({todos}) {
+import TodoItem from "./TodoItem";
+
+function TodoList({ todos, completedTodo, deleteTodo }) {
   return (
     <div>
       {todos.map((todo, index) => (
-        console.log(todo)
-        
+        <TodoItem key={index} index={index} todo={todo} completedTodo={completedTodo} deleteTodo={deleteTodo} />
       ))}
     </div>
   );
 }
-export default TodoList
+export default TodoList;
