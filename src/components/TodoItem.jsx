@@ -1,8 +1,8 @@
-function TodoItem() {
+function TodoItem({todos, index}) {
   return (
-    <div>
-      <button>Complete Todo</button>
-      <button>Delete Todo</button>
+    <div className="todo-item">
+      {todos.text}
+      
     </div>
   );
 }

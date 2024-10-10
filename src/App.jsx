@@ -1,15 +1,22 @@
-import "./App.css";
 import TodoInput from "./components/TodoInput";
+import "./App.css";
+import { useState } from "react";
 import TodoList from "./components/TodoList";
 
-function TodoApp() {
+function App() {
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = (text) => {
+    const newTodo = [...todos, { text, isCompleted: false }];
+    setTodos(newTodo);
+    console.log(newTodo);
+  };
+
   return (
     <div className="TodoApp">
-      <h1>Todo List</h1>
-      <TodoInput/>
-      <TodoList/>
+      <TodoInput addTodo={addTodo} />
+      <TodoList todos={todos}/>
     </div>
   );
 }
-
-export default TodoApp;
+export default App;

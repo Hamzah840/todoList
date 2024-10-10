@@ -1,12 +1,11 @@
-import "./TodoItem";
-import TodoItem from "./TodoItem";
-
-function TodoList() {
+function TodoList({todos}) {
   return (
     <div>
-      <TodoItem />
+      {todos.map((todo, index) => (
+        console.log(todo)
+        
+      ))}
     </div>
   );
 }
-
-export default TodoList;
+export default TodoList
