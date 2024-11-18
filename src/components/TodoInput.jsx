@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function TodoInput({addTodo}) {
+function TodoInput({ addTodo }) {
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (e) => {
@@ -13,15 +13,17 @@ function TodoInput({addTodo}) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Add Your Todo"
-        value={inputValue}
-        onChange={(e) => {
-          setInputValue(e.target.value);
-        }}
-      />
-      <button type="submit">Add Todo</button>
+      <div className="search-box">
+        <input
+          type="text"
+          placeholder="Add Your Todo"
+          value={inputValue}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+          }}
+        />
+        <button className="add" type="submit">+</button>
+      </div>
     </form>
   );
 }
