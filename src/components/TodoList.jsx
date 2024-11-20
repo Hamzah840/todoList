@@ -1,6 +1,6 @@
 import TodoItem from "./TodoItem";
 
-function TodoList({ todos, completedTodo, deleteTodo }) {
+function TodoList({ todos, completedTodo, deleteTodo, editTodo }) {
   return todos.map((todo, index) => (
     <TodoItem
       key={index}
@@ -8,6 +8,7 @@ function TodoList({ todos, completedTodo, deleteTodo }) {
       todo={todo}
       completedTodo={completedTodo}
       deleteTodo={deleteTodo}
+      editTodo={editTodo}
     />
   ));
 }

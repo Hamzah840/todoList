@@ -1,11 +1,14 @@
 import TodoInput from "./components/TodoInput";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoList from "./components/TodoList";
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
 
   const addTodo = (text) => {
     const newTodo = [...todos, { text, isCompleted: false }];
@@ -18,11 +21,21 @@ function App() {
     setTodos(newTodo);
   };
 
+  const editTodo = (index, newText) => {
+    const newTodo = [...todos];
+    newTodo[index].text = newText;
+    setTodos(newTodo);
+  }
+
   const deleteTodo = (index) => {
     const newTodo = [...todos];
     newTodo.splice(index, 1);
     setTodos(newTodo);
   };
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <div className="container">
@@ -32,11 +45,16 @@ function App() {
       <div className="TodoApp">
         <TodoInput addTodo={addTodo} />
         <div className="item-box">
+          {todos.length === 0 ? 
+          <div className="empty">Empty</div>
+           : 
           <TodoList
             todos={todos}
             completedTodo={completedTodo}
             deleteTodo={deleteTodo}
+            editTodo={editTodo}
           />
+          }
         </div>
       </div>
     </div>

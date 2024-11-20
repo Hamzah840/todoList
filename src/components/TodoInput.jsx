@@ -13,7 +13,7 @@ function TodoInput({ addTodo }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="search-box">
+      <div className="search-box flex flex-justify-center">
         <input
           type="text"
           placeholder="Add Your Todo"
